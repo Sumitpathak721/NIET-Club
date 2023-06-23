@@ -146,7 +146,7 @@ var upload = multer({
             cb(null,'public/dynamic/images')
         },
         filename:(req,file,cb)=>{
-            cb(null,req.body.name+"-clubIcon.png")
+            cb(null,req.body.name+(new Date()).getTime()+"-clubIcon.png")
         }
     })
 });
@@ -187,7 +187,7 @@ route.post("/editClub",upload.single("icon"),async(req,res)=>{
             }
             if(req.file){
                 fs.unlinkSync("public"+club.icon);
-                club.icon="/dynamic/images/"+req.body.name+"-clubIcon.png";
+                club.icon="/dynamic/images/"+req.file.filename;
             }
             club.description = req.body.desc;
             await club.save();

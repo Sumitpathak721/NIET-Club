@@ -15,11 +15,6 @@
     let localUser = await JSON.parse(localStorage.getItem("user"));
     
     if(localUser){
-      if(localUser.access=='admin'){
-        document.getElementById('admin').style.display = "block";
-      }else if(localUser.access=='clubAdmin'){
-        document.getElementById('clubAdmin').style.display = "block";
-      }
       document.getElementById("profile").style.visibility = "visible";
       document.getElementById("auth").style.visibility = "hidden";
       document.getElementById("profile").innerHTML = localUser.name;
@@ -27,13 +22,12 @@
       document.getElementById("profile").style.visibility = "hidden";
       document.getElementById("auth").style.visibility = "visible";
     }
-    document.getElementById("clubAdmin").href = "../clubAdmin/"+localUser.id; 
+    // document.getElementById("clubAdmin").href = "../clubAdmin/"+localUser.id; 
   }
   var visitProfile = async()=>{
     let localUser = await JSON.parse(localStorage.getItem("user"));
     window.location.href = "../profile/"+localUser.ERP_ID;
   }
-  
 </script>
 <style>
   #profile{
@@ -55,29 +49,6 @@
   #auth a{
     padding:20px;
   }
-  #admin{
-    padding: 6px;
-    background-color: transparent;
-    color: rgba(255, 255, 255, 0.435);
-    border: 0px;
-    margin: auto;
-    margin-right:10px;
-  }
-  #admin:hover{
-    color:white;
-  }
-  #clubAdmin{
-    padding: 7px;
-    font-size: 20px;
-    background-color: transparent;
-    color: rgba(255, 255, 255, 0.435);
-    border: 0px;
-    margin: auto;
-    margin-right:10px;
-  }
-  #clubAdmin:hover{
-    color:white;
-  }
 </style>
 <body onload="onLoad()">
     <body class="opening hide-UI view-2D zoom-large data-close controls-close">
@@ -89,10 +60,7 @@
             <a id="login-link" href="../auth/login">Login</a>
             <a id="signUp-link" href="../auth/register">SignUp</a>
           </div>
-          <a href="../admin/" id="admin" style="display:none;">Admin</a>
-          <a id="clubAdmin" style="display:none;" href=''>clubAdmin</a>
-          <button id="profile" onclick="visitProfile()"></button>
-
+            <button id="profile" onclick="visitProfile()"></button>
         </div>
         <div id="data">
           <a class="sun"  href="../club/dsw">DSW</a>

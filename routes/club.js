@@ -10,7 +10,9 @@ const clubModel = require("../db/clubs");
 route.get("/dsw",async(req,res)=>{
     let club = await clubModel.findOne({name:"dsw"}).select(["-_id"]);
     if(club){
-        res.render(templates+"/dsw.ejs",{club:club})
+        console.log(club);
+        console.log(club.desc2);
+        res.render(templates+"/dsw.ejs",{club:club,SERVER_DIR:process.env.SERVER_DIR})
     }else{
         res.send("This club is restricted!!")
     }
